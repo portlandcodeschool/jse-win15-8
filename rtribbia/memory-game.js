@@ -6,7 +6,7 @@ var MemoryGame = (function() {
 
 		var board = []; 
 		var faceup = null;
-		var gui = {};
+		var _gui = {};
 
 		for (var i = 0; i < cardset.len(); i++) {
 			board.push([i,0,0]); //[cardset.index, faceup, removed] = states are ONLY tracked here in entire game.
@@ -22,10 +22,10 @@ var MemoryGame = (function() {
 
 		this.gui = function(useGui) {
 			if (useGui === undefined) {
-				return gui;
+				return _gui;
 			}
 			else if (typeof useGui === "object") {
-				gui = useGui;
+				_gui = useGui;
 			}
 		}
 
@@ -33,6 +33,7 @@ var MemoryGame = (function() {
 			board.forEach(function (x){ x[1] = x[2] = 0;});
 			faceup = null;
 			shuffle();
+			_gui.mainview.reset();
 		}
 
 		this.faceupWhere = function() {
@@ -63,10 +64,10 @@ var MemoryGame = (function() {
 
 		this.lift = function(where) {
 			if ((board[where][1] == 0) && (board[where][2] == 0)) {
+				_gui.show(where);
 				if (faceup == null) {
 					faceup = where;
 					board[where][1] = 1;
-					return [cardset.display(board[where][0]),where,null];
 				} else {
 					var match = cardset.match(board[where][0],board[faceup][0]);
 					if (match) {
@@ -74,17 +75,14 @@ var MemoryGame = (function() {
 						board[where][1] = 0;
 						board[faceup][2] = 1;
 						board[where][2] = 1;
-						var result = ['match',where,faceup];
+						_gui.removeSoon([faceup,where]);
 						faceup = null;
-						return result; //match
 					} else {
 						board[where][1] = 0;
 						board[faceup][1] = 0;
-						var result = ['no match',where,faceup];
+						_gui.hideSoon([where,faceup]);
 						faceup = null;
-						return  result; //no match
 					}
-
 				}
 			} else {
 				return false;
