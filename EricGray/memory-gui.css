@@ -26,12 +26,13 @@
 }
 
 .face-up {
-	width: 20px;
-	height:30px;
+	width: 80px;
+	height:90px;
 	border: 1px solid black;
 	background-color: black;
 	color: white;
 	text-align: center;
+	float: left;
 }
 
 .hidden {

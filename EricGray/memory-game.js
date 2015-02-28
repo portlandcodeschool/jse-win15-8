@@ -86,14 +86,18 @@ var MemoryGame = (function() {
 
 
 		var lift = function(here) {
-			var here = Number(here.id);
+			var here = Number(here);
 			lifts += 1;
+
 			if (!isValid(here, length)){console.log('at is valid'); return false;};
 			if (!remainsAt(here)){console.log('at remains at'); return false;};
 			if (there===here) {console.log('at there is here');return false;};
 
 			if (_gui){
-				_gui.show(here, valueAt(Number(here)).name);
+				console.log('form if gui');
+				console.log(here);
+				console.log(valueAt(here).name);
+				_gui.show(here, valueAt(here).name);
 			};
 
 			var valHere = valueAt(here);
@@ -151,6 +155,9 @@ var MemoryGame = (function() {
 } //end of ctor
 
 	function isValid(where, length) {
+		console.log(typeof where);
+		console.log(where);
+		console.log(length);
 		return (typeof where === 'number')
 			&& (where%1 === 0)
 			&& (where>=0)

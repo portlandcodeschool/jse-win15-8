@@ -10,20 +10,25 @@ var CardView = Backbone.View.extend({
         // Each subview view will have a reference to game:
         this.game = opts.game;  //receive custom option
         // opts should also contain an id...
-        this.id =  opts.id;
-        console.log('here is opts.id');
         console.log(opts.id);
+        console.log(this.id);
+        this.id = opts.id;
+        console.log(this);
         this.el.setAttribute('class', 'face-down');     
 
     },
     // Each view should respond to a click with this method:
     lift: function() {
+        console.log('lifting this id');
+        console.log(this.id);
         this.game.lift(this.id);
 
     },
     // Each view should know how to re-render its own card
     // in these four ways:
     show: function(what) { //turn face-up with value _what_
+            console.log('here is what');
+            console.log(what);
             this.classList.toggle('face-down', false);
             this.classList.toggle('face-up', true);
             this.innerHTML = what;
@@ -46,30 +51,24 @@ var  GridView = Backbone.View.extend({
     tagName: 'div', //use this tag to make a new div
 
     initialize: function(opts) {
-        //this.el = this.el;
         this.game = opts.game;//
         this.cardviews = []; // grid's subviews
-        //$(this.el).css('background-color', 'red');
         this.el.setAttribute('class', 'grid');
 
-        for (cell = 0; cell<this.game.size(); ++cell){
+        for (cell = 0; cell<this.game.size(); cell++){
             // generate each subview:
             var card = new CardView({
                 //pass some options downward:
                 game: opts.game,
-                //...
-                //el: '<div>',
-                id: cell,
+                id: cell.toString(),
 
 
             });
-            $(card.el).addClass("face-down");
-            //$('tr').append(card.el);
-            //$('.rows0').append(card.el);
-            $(this.el).append(card.el);
             this.cardviews.push(card);
+
+            $(card.el).addClass("face-down");
+            $(this.el).append(card.el);
         };
-            console.log(this.cardviews);
             // connect card's element to DOM;
             // i.e. attach card.el to this.element
             // ...
@@ -96,12 +95,10 @@ var MainView = Backbone.View.extend({
     initialize: function(opts) {
         //opts should include el and game
         this.game = opts.game;
-        //this.el = opts.el;
         this.gridview = new GridView({
             //pass some options downward:
             game:opts.game,
             //...
-            //el: '<table>',
 
         });
 
@@ -135,7 +132,13 @@ function GUI(container,game) {
     // re-rendering to various subviews
     this.show = function(where,what) {
     //...
+
+            console.log('here is what');
+            console.log(what);
+            console.log('here is where');
+            console.log(where);
         var showIt = document.getElementById(where);
+        console.log(document.getElementById(where));
         showIt.classList.toggle('face-down', false)
         showIt.classList.toggle('face-up', true);
         showIt.innerHTML = what;
