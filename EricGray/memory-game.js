@@ -14,7 +14,7 @@ var MemoryGame = (function() {
 			there = false;
 			shuffle(slots);
 			lifts = 0;
-			if (_gui){_gui.reset()};
+			//if (_gui){_gui.reset()};
 
 /*	My original code:
 			this.shuffle();

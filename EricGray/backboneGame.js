@@ -5,23 +5,20 @@ var CardView = Backbone.View.extend({
     events: {
         'click': 'lift'
     },
-    classList: 'face-down',
     
     initialize: function(opts) {
         // Each subview view will have a reference to game:
         this.game = opts.game;  //receive custom option
         // opts should also contain an id...
         this.id =  opts.id;
-        this.el = opts.el;
-    /*    this.classList.add('face-down', 'face-up', 'hidden');
-        this.classList.toggle('face-down', true);
-        this.classList.toggle('face-up', false);
-        this.classList.toggle('hidden', false);   */
+        console.log('here is opts.id');
+        console.log(opts.id);
+        this.el.setAttribute('class', 'face-down');     
 
     },
     // Each view should respond to a click with this method:
     lift: function() {
-        this.game.lift(this);
+        this.game.lift(this.id);
 
     },
     // Each view should know how to re-render its own card
@@ -49,34 +46,41 @@ var  GridView = Backbone.View.extend({
     tagName: 'div', //use this tag to make a new div
 
     initialize: function(opts) {
-        console.log('here is opts.el from gridview');
-        console.log(opts.el);
-        this.el = opts.el;
+        //this.el = this.el;
         this.game = opts.game;//
         this.cardviews = []; // grid's subviews
+        //$(this.el).css('background-color', 'red');
+        this.el.setAttribute('class', 'grid');
 
-        for (cell = 0; cell<this.game.size(); cell++){
-            console.log('#' + cell);
+        for (cell = 0; cell<this.game.size(); ++cell){
             // generate each subview:
             var card = new CardView({
                 //pass some options downward:
                 game: opts.game,
                 //...
-                el: '#' + cell,
+                //el: '<div>',
                 id: cell,
 
+
             });
-            this.cardviews.push(card);
+            $(card.el).addClass("face-down");
+            //$('tr').append(card.el);
+            //$('.rows0').append(card.el);
             $(this.el).append(card.el);
+            this.cardviews.push(card);
         };
             console.log(this.cardviews);
             // connect card's element to DOM;
-            // i.e. attach card.el to this.el
+            // i.e. attach card.el to this.element
             // ...
         //}
     },
 
     reset: function() {
+        for (resetting = 0; resetting<this.cardviews.length; resetting++){
+            console.log(this.cardviews[resetting]);
+            this.cardviews[resetting].classList.add('face-up', 'face-down', 'hidden');
+        }
         //loop over all card views to reset them
         //...
     }
@@ -92,14 +96,16 @@ var MainView = Backbone.View.extend({
     initialize: function(opts) {
         //opts should include el and game
         this.game = opts.game;
-        this.el = opts.el;
-        console.log(opts.el);
+        //this.el = opts.el;
         this.gridview = new GridView({
             //pass some options downward:
             game:opts.game,
             //...
-            el: opts.el,
-        });  
+            //el: '<table>',
+
+        });
+
+
         // attach gridview.el below this.el
         //...
         $(this.el).append(this.gridview.el);
@@ -160,7 +166,7 @@ return GUI;
 })(); //end GUI IIFE
 
 function doStuff(){
-    g1u = new MemoryGUI('memorygame', game1);
+    g1u = new MemoryGUI('#memorygame', game1);
     game1.gui(g1u);
 }
 
