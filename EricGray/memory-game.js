@@ -112,10 +112,10 @@ var MemoryGame = (function() {
 					}
 					console.log("Match!");
 					there = false;			
-	/*					if (this.checkForGameOver() == true){
+						if (this.checkForGameOver() == true){
 							console.log('checking game over');
 							_gui.gameOver(lifts);    
-			};  */
+			};  
 					return;
 				}
 				_gui.hideSoon([there, here]);

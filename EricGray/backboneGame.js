@@ -47,6 +47,10 @@ var  GridView = Backbone.View.extend({
         this.game = opts.game;//
         this.cardviews = []; // grid's subviews
         this.el.setAttribute('class', 'grid');
+            var row1 = $('<tr id=row1>');
+            $(this.el).append(row1);
+            var row2 = $('<tr id=row2>');
+            $(this.el).append(row2);
         for (cell = 0; cell<this.game.size(); cell++){
             // generate each subview:
             var card = new CardView({
@@ -57,9 +61,12 @@ var  GridView = Backbone.View.extend({
 
             });
             this.cardviews.push(card);
-
             $(card.el).addClass("face-down");
-            $(this.el).append(card.el);
+          //  $(this.el).append(card.el);
+            if(cell%2==0){
+                $(row1).append(card.el);
+            } else {$(row2).append(card.el);
+            };
         };
             // connect card's element to DOM;
             // i.e. attach card.el to this.element
@@ -68,9 +75,9 @@ var  GridView = Backbone.View.extend({
     },
 
     reset: function() {
+        console.log(this.cardviews);
         for (resetting = 0; resetting<this.cardviews.length; resetting++){
-            console.log(this.cardviews[resetting]);
-            this.cardviews[resetting].classList.add('face-up', 'face-down', 'hidden');
+            $('#' + resetting).toggleClass('face-down', true);
         }
         //loop over all card views to reset them
         //...
@@ -127,10 +134,20 @@ function GUI(container,game) {
     this.show = function(where,what) {
     //...
         var showIt = document.getElementById(where);
-        console.log(document.getElementById(where));
         showIt.classList.toggle('face-down', false)
         showIt.classList.toggle('face-up', true);
         showIt.innerHTML = what;
+    }
+
+    this.gameOver = function(clicks){
+        console.log('im to gameOver in gui');
+        var finish = $('<div>Congratulations, you won!' +'<br />' + '<br />'+
+        'You completed the game in ' +clicks+ ' clicks!' +'<br />' + '<br />'+
+        'Click RESET to play again. </div>');
+        $(finish).toggleClass('exit', false);
+        $(finish).toggleClass('welcome', true);
+        $(container).append(finish);
+       // window.setTimeout(function(){$(finish).toggleClass('exit', true), 5000000});
     }
 
 
