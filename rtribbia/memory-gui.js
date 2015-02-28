@@ -15,7 +15,7 @@ var MemoryGUI = (function () {
 
 		var mView = Backbone.View.extend({
 			initialize: function() {
-				this.gridview = new gView({id: '#board'});
+				this.gridview = new gView({id: 'board'});
 				//this.el.appendChild(this.gridview.el);
 				this.$el.append(this.gridview.$el);
 				this.gridview.allCards_reset();
@@ -29,7 +29,7 @@ var MemoryGUI = (function () {
 			initialize: function() {
 				this.cardviews = [];
 				for (var i = 0; i < game.size(); i++) {
-					var card = new cView({id: '#' + i});
+					var card = new cView({id: i});
 					this.cardviews.push(card);
 					this.$el.append(card.$el);
 				}
@@ -82,7 +82,7 @@ var MemoryGUI = (function () {
 			//...
 	
 			var img = document.createElement('img');
-	        src = 'images/SVG-cards-1.3/' + game.getImg(id.replace('#','')) + '.svg';
+	        src = 'images/SVG-cards-1.3/' + game.getImg(id) + '.svg';
 	        img.src = src;
 	        img.setAttribute('width',65);
 	        return img;
@@ -106,7 +106,7 @@ var MemoryGUI = (function () {
 			}, 1000);			
 		}
 		function lift(evt) {
-			game.lift(this.id.replace('#','')); 
+			game.lift(this.id); 
 		}
 
     	

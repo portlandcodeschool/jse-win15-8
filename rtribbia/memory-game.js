@@ -92,9 +92,7 @@ var MemoryGame = (function() {
 		this.showCards = function () {
 			board.forEach(function (x,i) {
 				console.log(i + ': (f:' + x[1] + ') (r:' + x[2] + ') - ' + cardset.values()[x[0]].cardName() + ' - cardset[' + x[0] +']');
-
 			});
-
 		}
 
 		function shuffle() {
