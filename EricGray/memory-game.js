@@ -94,9 +94,6 @@ var MemoryGame = (function() {
 			if (there===here) {console.log('at there is here');return false;};
 
 			if (_gui){
-				console.log('form if gui');
-				console.log(here);
-				console.log(valueAt(here).name);
 				_gui.show(here, valueAt(here).name);
 			};
 

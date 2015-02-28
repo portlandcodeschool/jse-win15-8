@@ -47,9 +47,9 @@ var  GridView = Backbone.View.extend({
         this.game = opts.game;//
         this.cardviews = []; // grid's subviews
         this.el.setAttribute('class', 'grid');
-            var row1 = $('<tr id=row1>');
+            var row1 = $('<tr id=row1 class=rows>');
             $(this.el).append(row1);
-            var row2 = $('<tr id=row2>');
+            var row2 = $('<tr id=row2 class=rows>');
             $(this.el).append(row2);
         for (cell = 0; cell<this.game.size(); cell++){
             // generate each subview:
@@ -115,6 +115,7 @@ var MainView = Backbone.View.extend({
     resetAll: function() {
         this.game.reset();
         this.gridview.reset();
+        $('#gameover').remove();
     }
 });
 
@@ -141,7 +142,7 @@ function GUI(container,game) {
 
     this.gameOver = function(clicks){
         console.log('im to gameOver in gui');
-        var finish = $('<div>Congratulations, you won!' +'<br />' + '<br />'+
+        var finish = $('<div id=gameover>Congratulations, you won!' +'<br />' + '<br />'+
         'You completed the game in ' +clicks+ ' clicks!' +'<br />' + '<br />'+
         'Click RESET to play again. </div>');
         $(finish).toggleClass('exit', false);
