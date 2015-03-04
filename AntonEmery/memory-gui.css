@@ -4,9 +4,6 @@
 	/* ... */
 }
 
-
-
-
 div.card {
 	border: 2px solid black;
 	width: 60px;
@@ -25,7 +22,7 @@ div.card {
 }
 
 
-li.invisible {
+div.invisible {
 	display: none;
 }
 

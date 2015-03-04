@@ -46,15 +46,17 @@ var  GridView = Backbone.View.extend({
             for(var i = 0; i < this.game.size(); i++) {
             // generate each subview:
             var card = new CardView({game: opts.game, id: i});
-            card.$el.attr('id', i);
-            this.$el.append(card.$el);
-            card.$el.addClass('face-down');
+            
 
 
             this.cardviews.push(card);
 
             // connect card's element to DOM;
             // i.e. attach card.el to this.el
+            card.$el.attr('id', i);
+            card.$el.addClass('face-down');
+            this.$el.append(card.$el);
+
 
         }
     },
