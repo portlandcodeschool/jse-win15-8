@@ -13,6 +13,7 @@ var CardView = Backbone.View.extend({
         // Each subview view will have a reference to game:
         this.game = opts.game;  //receive custom option
         // opts should also contain an id...
+
         
     },
 
@@ -36,6 +37,7 @@ var CardView = Backbone.View.extend({
 
 var  GridView = Backbone.View.extend({
     tagName: 'div', //use this tag to make a new div
+    className: 'gridview',
 
     initialize: function(opts) {
         this.game = opts.game;//
@@ -44,16 +46,16 @@ var  GridView = Backbone.View.extend({
             for(var i = 0; i < this.game.size(); i++) {
             // generate each subview:
             var card = new CardView({game: opts.game, id: i});
-
-            card.$el.addClass('face-down');
+            card.$el.attr('id', i);
             this.$el.append(card.$el);
+            card.$el.addClass('face-down');
 
 
             this.cardviews.push(card);
 
             // connect card's element to DOM;
             // i.e. attach card.el to this.el
-            // ...
+
         }
     },
 
@@ -77,7 +79,7 @@ var MainView = Backbone.View.extend({
         this.game = opts.game;
         this.gridview = new GridView({
             //pass some options downward:
-            game:opts.game,
+            game: opts.game,
             //...
         });
         // attach gridview.el below this.el
