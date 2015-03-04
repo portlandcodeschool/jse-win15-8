@@ -134,10 +134,12 @@ function GUI(container,game) {
     // re-rendering to various subviews
     this.show = function(where,what) {
     //...
+        console.log('this is what');
+        console.log(what);
         var showIt = document.getElementById(where);
-        showIt.classList.toggle('face-down', false)
+        showIt.classList.toggle('face-down', false);
         showIt.classList.toggle('face-up', true);
-        showIt.innerHTML = what;
+        $(showIt).prepend('<img src=\'images\\' +what+ '.gif\' />');
     }
 
     this.gameOver = function(clicks){
