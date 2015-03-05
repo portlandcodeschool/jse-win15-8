@@ -21,7 +21,8 @@ var CardView = Backbone.View.extend({
 
     // Each view should respond to a click with this method:
     lift: function() {
-        //this.game.lift(/*something*/);
+        this.game.lift(parseInt(this.id));
+        console.log('lift called');
     },
     // Each view should know how to re-render its own card
     // in these four ways:
@@ -56,6 +57,7 @@ var  GridView = Backbone.View.extend({
             card.$el.attr('id', i);
             card.$el.addClass('face-down');
             this.$el.append(card.$el);
+            card.$el.onclick = this.lift;
 
 
         }

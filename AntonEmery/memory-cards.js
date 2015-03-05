@@ -3,13 +3,14 @@
 var MemoryCards = (function() {
 
 	// card values (each card is a pair, array [name,num]) :
-	var animals = [	['dog',1],['puppy',1],
-					['cat',2],['kitten',2],
-					['frog',3],['tadpole',3],
-					['bird',4],['chick',4],
-					['pig',5],['piglet',5],
-					['deer',6],['fawn',6],
-					['bear',7],['cub',7] ];
+	var animals = [	['tueffel',1],['tueffel',1],
+					['320',2],['320',2],
+					['220A',3],['220A',3],
+					['jem',4],['jem',4],
+					['400',5],['400',5],
+					['js100',6],['js100',6],
+					['explorer',7],['explorer',7],
+					['flyingv', 8],['flyingv', 8] ];
 
 	function Ctor() {
 		this.values = function() {

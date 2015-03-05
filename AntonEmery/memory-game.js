@@ -61,6 +61,7 @@ var MemoryGame = (function() {
 		
 
 		var lift = function(here) {//--> display string  id of card
+			console.log(here);
 			if (!isValid(here,length)) return false;  //id of card, total cards, including gaps
 			if (!remainsAt(here)) return false; //if there is not a card at the current location
 			if (there===here) return false; //if faceup card is equal to current hard
