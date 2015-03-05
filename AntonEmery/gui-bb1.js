@@ -22,11 +22,12 @@ var CardView = Backbone.View.extend({
     // Each view should respond to a click with this method:
     lift: function() {
         this.game.lift(parseInt(this.id));
-        console.log('lift called');
+        //console.log('lift called');
     },
     // Each view should know how to re-render its own card
     // in these four ways:
     show: function(what) { //turn face-up with value _what_
+        console.log('show called');
     },
     remove: function() { //remove as matched
     },
@@ -115,6 +116,7 @@ function GUI(container,game) {
     // re-rendering to various subviews
     this.show = function(where,what) {
     //...
+        this.mainview.gridview.cardviews[where].show();
     }
     this.hideSoon = function(locs) {
     //...

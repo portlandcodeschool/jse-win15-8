@@ -66,10 +66,10 @@ var MemoryGame = (function() {
 			if (!remainsAt(here)) return false; //if there is not a card at the current location
 			if (there===here) return false; //if faceup card is equal to current hard
 			// must be a face-down card here; proceed...
-			_gui.show(here, valueAt(here)); //id of card, animal name, numerical value
+			_gui.show(here, valueAt(here)); //id of card, guitar name, numerical value
 			
 			var valHere = valueAt(here); //current card [name, num]
-			//console.log(valHere);
+			console.log(valHere);
 			if (there === false) {  //card is not face up
 				// no current face-up
 				there = here; //turn here face-up
