@@ -8,20 +8,16 @@ var MemoryGUI = (function() { // begin IIFE
             container = '#'+container;
 
     // Generate all views:
-    //var mainview = 
+    // without mainview variable, Error: mainview is not defined
+    var mainview = 
     this.mainview = new MainView({
         el:container,
         // Pass a reference to game downward to all views:
         game:game
     });
 
-    // function makeID(where) {// given a number, generate an id
-    //     return 'cell'+where;
-    //     // return 'board'+_guiID+'cell'+where; // for multiple boards
-    // }
-
     function findCell(where) {
-        return mainview.gridview.cardviews[where];
+        return mainview.gridview.cardviews[where]; // var mainview
     }
     function hideAt(where) {
         findCell(where).hide();
@@ -30,8 +26,7 @@ var MemoryGUI = (function() { // begin IIFE
         findCell(where).remove();
     }
     // These methods will be called by game;
-    // figure out how they should delegate any
-    // re-rendering to various subviews
+    // delegate re-rendering to various subviews
     this.show = function(where,clicked) {
         findCell(where).show(clicked);
     };
@@ -50,6 +45,7 @@ var MemoryGUI = (function() { // begin IIFE
 
 
   var MainView = Backbone.View.extend({
+    className: 'memoryboard',
     events: {
       // define click on reset button
       'click button': 'resetAll'
@@ -60,15 +56,16 @@ var MemoryGUI = (function() { // begin IIFE
       this.game = options.game;
       this.gridview = new GridView({
           //pass some options downward:
-          game:options.game,
+          game:options.game
           //...
       });
       // attach gridview.el below this.el
       this.gridview.$el.appendTo(this.$el);
 
-
-      // create and attach a reset button:
-      //...
+      $('<h1>').html('Wisdom of Westeros')
+                .appendTo('#header');
+      $('<h2>').html('Match <em>Game of Thrones</em> characters with their words!')
+                .appendTo('#header');
       $('<button>').html('Play Again')
                   .prependTo('#footer');
     },
@@ -94,11 +91,11 @@ var MemoryGUI = (function() { // begin IIFE
               //pass some options downward:
               game: options.game,
               id: i
+              //id: 'cell'+i
           });
           this.cardviews.push(card);
           // connect card's element to DOM;
-          // i.e. attach card.el to this.el
-          card.$el.appendTo(this.$el);
+          this.$el.append(card.el);
       }
     },
 
@@ -113,18 +110,21 @@ var MemoryGUI = (function() { // begin IIFE
 
   var CardView = Backbone.View.extend({
     tagName: 'div', //use this tag to make a new el
+    className: 'generic',
     events: {
         'click': 'lift'
     },
-    className: 'generic',
     initialize: function(options) {
       // Each subview view will have a reference to game:
       this.game = options.game;  //receive custom option
-      // options should also contain an id...
+      this.where = options.where;
+      this.id = options.id;
+      this.$el.addClass('facedown');
     },
     // Each view should respond to a click with this method:
     lift: function() {
       this.game.lift(Number(this.id));
+      this.game.lift(this.id);
     },
     // Each view should know how to re-render its own card
     // in these four ways:
@@ -144,10 +144,14 @@ var MemoryGUI = (function() { // begin IIFE
     hide: function() { //turn face-down
       this.$el.removeClass('cardQuote')
               .html('')
-              .addClass('facedown');
+              .removeClass('cardImage');
     },
     reset: function() { //return to starting state
-      this.hide();
+      this.$el.removeClass('cardQuote')
+            .html('')
+            .removeClass('cardImage')
+            .removeClass('matched')
+            .addClass('facedown');
     }
   }); // end cardview
 
