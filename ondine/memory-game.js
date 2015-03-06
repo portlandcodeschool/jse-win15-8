@@ -66,6 +66,7 @@ var MemoryGame = (function() {
 					removeAt(picked);
 					if (_gui)
 						_gui.removeSoon([pick,picked]);
+					//optional: report match
 				} else {
 					if (_gui)
 						_gui.hideSoon([pick,picked]);
