@@ -30,7 +30,17 @@ var CardView = Backbone.View.extend({
         //change card css to face up. where parameter equals card id 
         $('#' + this.id).toggleClass('face-up face-down');
     },
+    
     remove: function() { //remove as matched
+      console.log('remove called');
+      // window.setTimeout(function() {
+      //   whereArr.forEach(function(x) {
+      //   //set class invisible
+      //   $('#' + x).attr('class', 'invisible');
+      //   $('ul').nextAll('p').remove();
+      //   });
+      //   }, 2000);
+
     },
     hide: function() { //turn face-down
     },
@@ -58,9 +68,6 @@ var  GridView = Backbone.View.extend({
 
             // connect card's element to DOM;
             // i.e. attach card.el to this.el
-           
-            
-
 
         }
     },
@@ -117,15 +124,15 @@ function GUI(container,game) {
     // re-rendering to various subviews
     this.show = function(where, what) {  //where is the index of arr, what is [name, number] sub array
     //...
-        console.log(what);
-        this.mainview.gridview.cardviews[where].show(what);
+      console.log(what);
+      this.mainview.gridview.cardviews[where].show(what);
     }
     this.hideSoon = function(locs) {
     //...
     }
     this.removeSoon = function(locs) {
     //...
-    
+    this.mainview.gridview.remove(locs);
     }
 }
 

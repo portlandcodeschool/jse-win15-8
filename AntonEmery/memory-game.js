@@ -17,7 +17,7 @@ var MemoryGame = (function() {
 			slots = cardset.values(); //returns new array iterator object that contains values for each index in the array
 			length = slots.length;
 			there = false;
-			shuffle(slots);
+			//shuffle(slots);
 		}
 		reset();// reset now as part of init'ing
 
@@ -71,7 +71,6 @@ var MemoryGame = (function() {
 			_gui.show(here, valueAt(here)); // (position in array, [guitar name, 3]
 			
 			var valHere = valueAt(here); //current card [name, num]
-			console.log(valHere);
 
 			if (there === false) {  //card is not face up
 				// no current face-up
@@ -80,7 +79,7 @@ var MemoryGame = (function() {
 				// check match with face-up
 				if (cardset.match(valHere, valueAt(there))) { //if current card value matches other face up card
 
-					$('ul').after('<p>' + 'Match!' + '</p>');
+					$('#memorygame').after('<p>' + 'Match!' + '</p>');
 
 					// match; remove both:
 					removeAt(here);
