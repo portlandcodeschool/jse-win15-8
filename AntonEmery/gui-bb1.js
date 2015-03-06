@@ -64,7 +64,7 @@ var  GridView = Backbone.View.extend({
             var card = new CardView({game: opts.game, id: i});
             card.$el.attr('id', i);
             card.$el.addClass('face-down');
-            card.$el.append('<img src="img/' + i + '.jpg">');
+            card.$el.append('<img src="img/backofcard.png">');
             this.$el.append(card.$el);
             card.$el.onclick = this.lift;
             
