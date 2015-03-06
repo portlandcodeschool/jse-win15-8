@@ -27,7 +27,8 @@ var CardView = Backbone.View.extend({
     // Each view should know how to re-render its own card
     // in these four ways:
     show: function(what) { //turn face-up with value _what_
-        console.log('show called');
+        //change card css to face up. where parameter equals card id 
+        $('#' + this.id).toggleClass('face-up face-down');
     },
     remove: function() { //remove as matched
     },
@@ -48,17 +49,17 @@ var  GridView = Backbone.View.extend({
             for(var i = 0; i < this.game.size(); i++) {
             // generate each subview:
             var card = new CardView({game: opts.game, id: i});
-            
-
+            card.$el.attr('id', i);
+            card.$el.addClass('face-down');
+            this.$el.append(card.$el);
+            card.$el.onclick = this.lift;
 
             this.cardviews.push(card);
 
             // connect card's element to DOM;
             // i.e. attach card.el to this.el
-            card.$el.attr('id', i);
-            card.$el.addClass('face-down');
-            this.$el.append(card.$el);
-            card.$el.onclick = this.lift;
+           
+            
 
 
         }
@@ -114,15 +115,17 @@ function GUI(container,game) {
     // These methods will be called by game;
     // figure out how they should delegate any
     // re-rendering to various subviews
-    this.show = function(where,what) {
+    this.show = function(where, what) {  //where is the index of arr, what is [name, number] sub array
     //...
-        this.mainview.gridview.cardviews[where].show();
+        console.log(what);
+        this.mainview.gridview.cardviews[where].show(what);
     }
     this.hideSoon = function(locs) {
     //...
     }
     this.removeSoon = function(locs) {
     //...
+    
     }
 }
 
