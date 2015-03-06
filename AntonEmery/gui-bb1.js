@@ -32,18 +32,21 @@ var CardView = Backbone.View.extend({
     },
     
     remove: function() { //remove as matched
-      console.log('remove called');
-      // window.setTimeout(function() {
-      //   whereArr.forEach(function(x) {
-      //   //set class invisible
-      //   $('#' + x).attr('class', 'invisible');
-      //   $('ul').nextAll('p').remove();
-      //   });
-      //   }, 2000);
+      var self = this;
+      window.setTimeout(function() {
+         //set class invisible         
+        $('#' + self.id).attr('class', 'invisible');
+         }, 1000);
+    },
 
-    },
     hide: function() { //turn face-down
+      var self = this;
+      window.setTimeout(function() {
+         //set class invisible         
+        $('#' + self.id).toggleClass('face-down face-up');
+         }, 1000);
     },
+
     reset: function() { //return to starting state
     }
 });
@@ -61,14 +64,13 @@ var  GridView = Backbone.View.extend({
             var card = new CardView({game: opts.game, id: i});
             card.$el.attr('id', i);
             card.$el.addClass('face-down');
+            card.$el.append('<img src="img/' + i + '.jpg">');
             this.$el.append(card.$el);
             card.$el.onclick = this.lift;
-
+            
             this.cardviews.push(card);
-
             // connect card's element to DOM;
             // i.e. attach card.el to this.el
-
         }
     },
 
@@ -127,14 +129,23 @@ function GUI(container,game) {
       console.log(what);
       this.mainview.gridview.cardviews[where].show(what);
     }
+
     this.hideSoon = function(locs) {
-    //...
+      var self = this;
+      locs.forEach(function(x){
+        self.mainview.gridview.cardviews[x].hide();
+      })
     }
-    this.removeSoon = function(locs) {
-    //...
-    this.mainview.gridview.remove(locs);
+
+    this.removeSoon = function(locs) {  //locs are ids of card?
+      var self = this;
+      locs.forEach(function(x) {
+        self.mainview.gridview.cardviews[x].remove();
+      });
     }
-}
+  }
+  
+
 
 return GUI;
 
