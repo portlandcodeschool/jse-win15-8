@@ -27,8 +27,11 @@ var CardView = Backbone.View.extend({
     // Each view should know how to re-render its own card
     // in these four ways:
     show: function(what) { //turn face-up with value _what_
+        console.log(what[1]);
         //change card css to face up. where parameter equals card id 
         $('#' + this.id).toggleClass('face-up face-down');
+        $('#' + this.id ).children('img').attr('src', 'img/' + what[1] + '.jpg');
+
     },
     
     remove: function() { //remove as matched
@@ -126,7 +129,6 @@ function GUI(container,game) {
     // re-rendering to various subviews
     this.show = function(where, what) {  //where is the index of arr, what is [name, number] sub array
     //...
-      console.log(what);
       this.mainview.gridview.cardviews[where].show(what);
     }
 
