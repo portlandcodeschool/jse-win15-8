@@ -1,7 +1,8 @@
 /* CSS for GUI...*/
 
 #memorygame {
-	/* ... */
+	width: 1250px;
+	margin: 0 auto;
 }
 
 div.card {
@@ -9,7 +10,7 @@ div.card {
 	width: 120px;
 	height: 200px;
 	display: inline-block;
-	margin: 0px 10px 20px 10px;
+	margin: 20px 10px 20px 10px;
 
 }
 

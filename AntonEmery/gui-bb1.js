@@ -48,10 +48,13 @@ var CardView = Backbone.View.extend({
       window.setTimeout(function() {
          //set class invisible         
         $('#' + self.id).toggleClass('face-down face-up');
+        $('#' + self.id ).children('img').attr('src', 'img/backofcard.png');        
          }, 1000);
     },
 
     reset: function() { //return to starting state
+      //delete everything inside memorygame div
+      //rerender
     }
 });
 

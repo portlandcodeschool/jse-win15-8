@@ -79,7 +79,7 @@ var MemoryGame = (function() {
 				// check match with face-up
 				if (cardset.match(valHere, valueAt(there))) { //if current card value matches other face up card
 
-					$('#memorygame').after('<p>' + 'Match!' + '</p>');
+					$('#memorygame').append('<p>' + 'Match!' + '</p>');
 
 					// match; remove both:
 					removeAt(here);
