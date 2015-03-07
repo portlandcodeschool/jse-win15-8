@@ -22,42 +22,66 @@ body {
   margin: 0;
 }
 
-#header, #footer {
+#header {
+  margin-top: 2em;
+}
+
+#footer {
   clear: both;
-  margin: 0 auto;
+  padding-top: 10px;
+  margin: 0 auto 4em auto;
+}
+
+.sigil {
+  width: 230px;
+  position: absolute;
+  top: 1em;
+  left: 3.5em;
+  border-radius: 50%;
+}
+
+.pageTitle {
+  margin: 0;
+  background-color: rgba(91,191,237,.3);
+  padding: 26px 0;
 }
 
 h1 {
   font-family: 'dobkinplain';
   font-size: 5em;
-  text-align: center;
+  text-align: left;
   color: rgb(188, 155, 106);
-  background-color: rgba(255,255,255,.2);
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 20px 10px 20px 10px;
-  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 320px;
 }
 
 h2, h3, h4 {
   font-family: 'Open Sans';
   font-weight: 600;
   color: rgb(234,223,196);
-  text-align: center;
+  text-align: left;
+  margin-left: 320px;
+  margin-bottom: 0;
 }
 
 p {
   font-family: 'Open Sans';
   font-weight: 300;
+  color: #fff;
   font-size: 1em;
   line-height: 1.4em;
-  text-align: center;
+  text-align: left;
+}
+#footer p {
+  padding-left: 3.5em;
+  margin-top: 1em;
 }
 
 .memoryboard {
-  margin: 3em;
+  margin: 2em 3em;
 }
-/* general card at game start */
+/* generic card size and position - don't remove class */
 .generic { 
   width: 225px;
   height: 315px;
@@ -67,7 +91,7 @@ p {
   border: 1px solid rgb(0,81,133);
   border-radius: 6px;
 }
-
+/* cardback display */
 .facedown {
   background-image: url(../images/throne.jpg);
   background-size: 100%;
@@ -75,7 +99,6 @@ p {
   border: 1px solid rgb(0,81,133);
   border-radius: 6px; 
 }
-/* add rules for responsize sizing here */
 
 .cardImage img {
   width: 100%;
@@ -106,13 +129,14 @@ p {
   visibility: hidden;
 }
 
-button {
-  margin: 3em auto 2em 3.8em;
+.resetButton {
+  margin: 2em auto 2em 2em;
   font-family: 'Open Sans';
-  font-weight: 600;
-  font-size: 16px;
-  padding: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 10px;
   background-color: rgb(91,191,237);
   color: rgb(0,33,87);
   border-radius: 8px;
+  position: inherit;
 }

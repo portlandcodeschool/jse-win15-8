@@ -46,28 +46,32 @@ var MemoryGUI = (function() { // begin IIFE
 
   var MainView = Backbone.View.extend({
     className: 'memoryboard',
-    events: {
-      // define click on reset button
-      'click button': 'resetAll'
+    events: { 
+      'click .resetButton': 'resetAll' // define click on reset button
     },
-    //...
     initialize: function(options) {
       //options should include el and game
       this.game = options.game;
       this.gridview = new GridView({
           //pass some options downward:
           game:options.game
-          //...
       });
+      $('<img src="images/targaryen-sigil.png">')
+                .addClass('sigil')
+                .prependTo('#header');
+      $('<div>').addClass('pageTitle')
+                .appendTo('#header');
+      $('<h1>').html('Wisdom of Westeros')
+                .appendTo('.pageTitle');
+      $('<h2>').html('Match <em>Game of Thrones</em> characters with their words!')
+                .appendTo('.pageTitle');
+      $('<button>').html('Play Again')
+                  .addClass('resetButton')
+                  .appendTo(this.gridview.$el); // button only works if inside gridview
       // attach gridview.el below this.el
       this.gridview.$el.appendTo(this.$el);
-
-      $('<h1>').html('Wisdom of Westeros')
-                .appendTo('#header');
-      $('<h2>').html('Match <em>Game of Thrones</em> characters with their words!')
-                .appendTo('#header');
-      $('<button>').html('Play Again')
-                  .prependTo('#footer');
+      $('<p>').html('Design by Ondine Gallatin')
+              .appendTo('#footer');
     },
     
     resetAll: function() {
@@ -91,7 +95,6 @@ var MemoryGUI = (function() { // begin IIFE
               //pass some options downward:
               game: options.game,
               id: i
-              //id: 'cell'+i
           });
           this.cardviews.push(card);
           // connect card's element to DOM;
@@ -100,7 +103,6 @@ var MemoryGUI = (function() { // begin IIFE
     },
 
     reset: function() {
-      //loop over all card views to reset them
       this.cardviews.forEach(function(view){
           view.reset();
       });
@@ -109,34 +111,41 @@ var MemoryGUI = (function() { // begin IIFE
 
 
   var CardView = Backbone.View.extend({
-    tagName: 'div', //use this tag to make a new el
+    tagName: 'div',
     className: 'generic',
     events: {
         'click': 'lift'
     },
     initialize: function(options) {
-      // Each subview view will have a reference to game:
-      this.game = options.game;  //receive custom option
+      this.game = options.game;
       this.where = options.where;
       this.id = options.id;
       this.$el.addClass('facedown');
     },
     // Each view should respond to a click with this method:
     lift: function() {
-      this.game.lift(Number(this.id));
       this.game.lift(this.id);
     },
-    // Each view should know how to re-render its own card
-    // in these four ways:
+    // Each view re-render its own card in these four ways:
     show: function(clicked) {
       this.$el.removeClass('facedown');
-        if (clicked.charAt(clicked.length-1) == '.') {
-          this.$el.addClass('cardQuote')
-               .html('<p class="quote">' + clicked + '</p>');
-        } else {
+      if (clicked.charAt(clicked.length-1) == 'g') {
           this.$el.html('<img src="images/' + clicked + '"/>')
               .addClass('cardImage');
-        }   
+      } else {
+          this.$el.addClass('cardQuote')
+               .html('<p class="quote">' + clicked + '</p>');
+      }
+          
+
+
+        // if (clicked.charAt(clicked.length-1) == '.') {
+        //   this.$el.addClass('cardQuote')
+        //        .html('<p class="quote">' + clicked + '</p>');
+        // } else {
+        //   this.$el.html('<img src="images/' + clicked + '"/>')
+        //       .addClass('cardImage');
+        // }   
     },
     remove: function() { //remove as matched
       this.$el.addClass('matched');
@@ -144,7 +153,8 @@ var MemoryGUI = (function() { // begin IIFE
     hide: function() { //turn face-down
       this.$el.removeClass('cardQuote')
               .html('')
-              .removeClass('cardImage');
+              .removeClass('cardImage')
+              .addClass('facedown');
     },
     reset: function() { //return to starting state
       this.$el.removeClass('cardQuote')
