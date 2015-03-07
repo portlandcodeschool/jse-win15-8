@@ -28,7 +28,9 @@ var MemoryCards = (function() {
 									{name: 'tyrion', cardface: 'tyrion.jpg', person: 'Tyrion Lannister'},
 									{name: 'tyrion', cardface: 'Save it for Joffrey; he loves a good grovel.'},
 									{name: 'jon', cardface: 'jon.jpg', person: 'Jon Snow'},
-									{name: 'jon', cardface: 'I never met my mother.'}
+									{name: 'jon', cardface: 'I never met my mother.'},
+									{name: 'joffrey', cardface: 'joffrey.jpg', person: 'Joffrey Baratheon'},
+									{name: 'joffrey', cardface: 'The king can do as he likes!'}
 					 ];
 
 		this.values = function() {
