@@ -27,5 +27,12 @@ div.invisible {
 	display: none;
 }
 
+#footer {
+	width: 1250px;
+	margin: 0 auto;
+}
 
+button {
+	margin-left: 10px;
+}
 
