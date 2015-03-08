@@ -1,0 +1,79 @@
+.memorygrid {
+	display:inline-block;
+	margin:20px;
+}
+
+.memorycell {
+	width:60px;
+	height:60px;
+	border-radius:5px;
+	border:1px solid black;
+	background-color:#ddddff;
+	float:left;
+	text-align:center;
+	line-height:60px;
+	font-size:large;
+	margin:5px;
+	background:url(img/background.jpg) no-repeat;
+}
+
+.firstcol {
+	clear:both;
+}
+
+.faceup {
+	background-color:#ffffff;
+}
+
+.faceup:before {
+	content:attr(value); /* shows card face value */
+}
+
+.missing {
+	visibility:hidden;
+}
+
+.resetBtn {
+	clear:both;
+	display:block;
+	margin:0 auto;
+}
+
+/* CSS for GUI...*/
+
+body	{
+	background:url(img/page-bg.jpg) no-repeat #000000;
+	background-size:cover;
+}
+#memorygame {
+}
+
+ul	{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+	
+li.memorycell	{
+	float:left;
+	width:130px;	
+	height:200px;
+	margin:10px
+}
+
+
+
+.face-up {
+}
+
+.matched {
+	background-color: #0AEF1E
+}
+
+.face-down {
+	background:url(img/background.jpg) no-repeat;
+}
+
+.removeCard	{
+	display:none;
+}
