@@ -13,11 +13,7 @@ var CardView = Backbone.View.extend({
         // Each subview view will have a reference to game:
         this.game = opts.game;  //receive custom option
         // opts should also contain an id...
-
-        
     },
-
-
 
     // Each view should respond to a click with this method:
     lift: function() {
@@ -53,7 +49,6 @@ var CardView = Backbone.View.extend({
     },
 
     reset: function() { //return to starting state
-        console.log('card reset called');
     }
 });
 
@@ -83,9 +78,11 @@ var  GridView = Backbone.View.extend({
     reset: function() {
         
         //loop over all card views to reset them
-        this.cardviews.forEach(function(x) {
-          x.reset();
-         })
+        $('#memorygame').empty();
+        // this.cardviews.forEach(function(x) {
+        //  x.reset();
+        //  })
+        go();
     }
     
 });
