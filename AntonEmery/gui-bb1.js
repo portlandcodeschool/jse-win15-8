@@ -111,6 +111,10 @@ var MainView = Backbone.View.extend({
         var $button = $('<button class="pure-button" id="resetBtn">');
         $button.html('Reset');
         this.$el.append($button);
+
+        //create and append match div
+        var $matchDiv = $('<div id="match"><p>Match!</p></div>');
+        this.$el.append($matchDiv);
     },
     
     resetAll: function() {
