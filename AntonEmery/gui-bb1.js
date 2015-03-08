@@ -53,9 +53,7 @@ var CardView = Backbone.View.extend({
     },
 
     reset: function() { //return to starting state
-      //delete everything inside memorygame div
-        console.log('reset called');
-      //rerender
+        console.log('card reset called');
     }
 });
 
@@ -83,8 +81,11 @@ var  GridView = Backbone.View.extend({
     },
 
     reset: function() {
+        
         //loop over all card views to reset them
-        this.card.reset();
+        this.cardviews.forEach(function(x) {
+          x.reset();
+         })
     }
     
 });
@@ -116,7 +117,6 @@ var MainView = Backbone.View.extend({
     },
     
     resetAll: function() {
-        console.log('reset all called');
         this.game.reset();
         this.gridview.reset();
     }
