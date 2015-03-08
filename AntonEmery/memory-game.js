@@ -17,7 +17,7 @@ var MemoryGame = (function() {
 			slots = cardset.values(); //returns new array iterator object that contains values for each index in the array
 			length = slots.length;
 			there = false;
-			//shuffle(slots);
+			shuffle(slots);
 		}
 		reset();// reset now as part of init'ing
 
@@ -79,7 +79,7 @@ var MemoryGame = (function() {
 				// check match with face-up
 				if (cardset.match(valHere, valueAt(there))) { //if current card value matches other face up card
 
-					$('#match').show().delay(2000).fadeOut();
+					$('#match').fadeIn(1000).delay(1000).fadeOut();
 
 					// match; remove both:
 					removeAt(here);

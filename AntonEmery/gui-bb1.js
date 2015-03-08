@@ -34,7 +34,7 @@ var CardView = Backbone.View.extend({
       var self = this;
       window.setTimeout(function() {
          //set class invisible         
-        $('#' + self.id).attr('class', 'invisible');
+        $('#' + self.id).addClass('invisible');
         $('#' + self.id ).children('img').attr('src', 'img/backofcard.png');        
          }, 1000);
     },

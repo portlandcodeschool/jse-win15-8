@@ -24,7 +24,7 @@ div.card {
 
 
 div.invisible {
-	display: none;
+	visibility: hidden;
 }
 
 #footer {
@@ -34,5 +34,22 @@ div.invisible {
 
 button {
 	margin-left: 10px;
+}
+
+#match {
+	background:rgba(0,0,0,0.7);
+ 	width:1250px;
+ 	height:100%;
+	position:absolute;
+ 	top:0;
+ 	left:50px;
+ 	display:none;
+ 	text-align: center;
+}
+
+#match p {
+	color: white;
+	font-size: 30px;
+	margin-top: 300px;
 }
 
