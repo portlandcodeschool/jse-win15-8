@@ -1,0 +1,55 @@
+/* CSS for GUI...*/
+
+#memorygame {
+	width: 1250px;
+	margin: 0 auto;
+}
+
+div.card {
+	border: 2px solid black;
+	width: 120px;
+	height: 200px;
+	display: inline-block;
+	margin: 20px 10px 20px 10px;
+
+}
+
+.face-up {
+	/*background-color: green;*/
+}
+
+.face-down {
+	background-color: grey;
+}
+
+
+div.invisible {
+	visibility: hidden;
+}
+
+#footer {
+	width: 1250px;
+	margin: 0 auto;
+}
+
+button {
+	margin-left: 10px;
+}
+
+#match {
+	background:rgba(0,0,0,0.7);
+ 	width:1250px;
+ 	height:100%;
+	position:absolute;
+ 	top:0;
+ 	left:50px;
+ 	display:none;
+ 	text-align: center;
+}
+
+#match p {
+	color: white;
+	font-size: 30px;
+	margin-top: 300px;
+}
+
