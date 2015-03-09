@@ -49,6 +49,9 @@ var CardView = Backbone.View.extend({
     },
 
     reset: function() { //return to starting state
+      //set all cards to visible and face down. 
+      $('#' + this.id).addClass('face-down');
+      $('#' + this.id).removeClass('face-up invisible');
     }
 });
 
@@ -76,13 +79,10 @@ var  GridView = Backbone.View.extend({
     },
 
     reset: function() {
-        
         //loop over all card views to reset them
-        $('#memorygame').empty();
-        // this.cardviews.forEach(function(x) {
-        //  x.reset();
-        //  })
-        go();
+        this.cardviews.forEach(function(x) {
+        x.reset();
+        })
     }
     
 });
