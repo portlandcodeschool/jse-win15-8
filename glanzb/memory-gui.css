@@ -1,0 +1,40 @@
+/* CSS for GUI...*/
+
+body {
+	background-image: url(img/Enterprise.jpg);
+	background-size: cover;
+}
+
+li {
+	list-style: none;
+	float: left;
+	margin: 5px;
+	width: 150px;
+	height: 250px;
+	border: 1px solid black;
+	
+}
+
+
+
+.face-up, .face-down {
+	background-size: 100%;
+	margin: 2px;
+	padding: 2px;
+	border-radius: 10;
+	
+}
+
+.face-down {
+	background-image: url(img/star_trek.jpg);
+}
+
+/*.memorycell {
+	background-image: url(img/star_trek.jpg);
+}*/
+
+.matched {
+	visibility: hidden;
+}
+
+
