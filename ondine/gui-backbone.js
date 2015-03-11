@@ -129,23 +129,14 @@ var MemoryGUI = (function() { // begin IIFE
     // Each view re-render its own card in these four ways:
     show: function(clicked) {
       this.$el.removeClass('facedown');
-      if (clicked.charAt(clicked.length-1) == 'g') {
+      var regexp = /(\.+jpg)/i;
+      if (clicked.match(regexp)) {
           this.$el.html('<img src="images/' + clicked + '"/>')
               .addClass('cardImage');
       } else {
           this.$el.addClass('cardQuote')
                .html('<p class="quote">' + clicked + '</p>');
       }
-          
-
-
-        // if (clicked.charAt(clicked.length-1) == '.') {
-        //   this.$el.addClass('cardQuote')
-        //        .html('<p class="quote">' + clicked + '</p>');
-        // } else {
-        //   this.$el.html('<img src="images/' + clicked + '"/>')
-        //       .addClass('cardImage');
-        // }   
     },
     remove: function() { //remove as matched
       this.$el.addClass('matched');
